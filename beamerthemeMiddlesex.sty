@@ -1,0 +1,136 @@
+% Middlesex University Beamer Theme
+%
+% Written by Matthew M. Jones
+%
+% November 2015
+%
+
+\ProvidesPackage{beamerthemeMiddlesex}[2017/22/08]
+\RequirePackage{fontspec}
+
+\RequirePackage{MDXColors}
+\RequirePackage{pgf}
+\RequirePackage{tikz}
+
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\tcbuselibrary{theorems}
+
+
+\defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+
+\newfontfamily\maintitlefont[SizeFeatures = {Size = 60}]{Open Sans Condensed Light}
+\newfontfamily\modulefont[SizeFeatures = {Size = 26}]{Open Sans Condensed Bold}
+\newfontfamily\authorfont[SizeFeatures = {Size = 16}]{Open Sans}
+\newfontfamily\titlefont{Montserrat Regular}
+\newfontfamily\quotefont[SizeFeatures = {Size = 14}]{Bad Script}
+
+\newfontfamily\@thmstylefont[SizeFeatures = {Size = 12}]{Montserrat Italic}                %% For all the theorem titles
+
+\RequirePackage{eso-pic}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]
+
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.87\paperwidth},\LenToUnit{0.92\paperheight}){#1}}}
+\AddToShipoutPictureFG{
+  \AtPagemyUpperLeft{{\includegraphics[height=.5cm,keepaspectratio]{MU_LDN_Logo.pdf}}}
+}%
+
+\mode<presentation>
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\useoutertheme{tree}
+\setbeamercolor{separation line}{use=structure,bg=structure.fg!50!bg}
+
+\setbeamerfont{title}{family=\titlefont\selectfont}
+\setbeamerfont{frametitle}{size*={20}{24}, family=\titlefont\selectfont}
+
+\setbeamercolor{background canvas}{bg=white}
+
+\setbeamercolor{alerted text}{fg=MDXCorporateRed}
+\setbeamercolor{frametitle}{fg=MDXBrightsDarkBlue,bg=MDXCorporateLightGrey}
+\setbeamercolor{title}{fg=MDXBrightsDarkBlue, bg=MDXNeutralsLightGrey}
+\setbeamercolor{subtitle}{fg=MDXBrightsDarkBlue, bg=MDXNeutralsLightGrey}
+\setbeamercolor{author}{fg=MDXBrightsDarkBlue, bg=white}
+\setbeamercolor{date}{fg=MDXBrightsDarkBlue, bg=white}
+\setbeamercolor{block title}{fg=MDXBrightsDarkBlue, bg=MDXNeutralsGrey}
+\setbeamercolor{block body}{bg=MDXNeutralsLightGrey}
+\setbeamercolor{background canvas}{bg=black!5!white}
+
+\def\@boxheight{32pt}
+\newcommand{\setboxheight}[1]{\def\@boxheight{#1}}
+\newcommand{\boxedformula}[1]{\tikz[baseline=-2pt] \node [rectangle, rounded corners=2pt, right,  fill=MDXBrightsLightBlueA, draw=MDXBrightsDarkBlue, minimum size = \@boxheight] {$#1$};}
+
+%%%%%%%%%%%%% Changing the look of the title page
+\def\@module{}\def\themodule{}
+\newcommand{\module}[1]{\def\@module{#1}\def\themodule{#1}}
+
+\def\@title{}\def\thetitle{}
+\renewcommand{\title}[1]{\def\@title{#1}\def\thetitle{#1}}
+
+\def\@author{}\def\theauthor{}
+\renewcommand{\author}[1]{\def\@author{#1}\def\theauthor{#1}}
+
+\def\@backgroundimage{screen.jpg}
+\newcommand{\setbackgroundimage}[1]{\def\@backgroundimage{#1}}
+
+\renewcommand{\maketitle}{%
+\pagestyle{empty}\linespread{1.6} % Fixes a problem with large ascenders/descenders in the fonts.
+        \begin{tikzpicture}[remember picture,overlay]
+		\node at (current page.center) { \includegraphics[height=\paperheight]{\@backgroundimage} };
+		\fill [opacity = .7] (current page.south west) rectangle (current page.north east);		
+		
+		\draw (current page.center) node [above, text width = \textwidth, align = center] {\maintitlefont \textcolor{white}{\thetitle}};
+ 		\draw (current page.center) node [below] {\modulefont \textcolor{white}{\themodule}};
+ 		
+ 		\draw (current page.south) node [above] {\authorfont \textcolor{white}{\theauthor}};
+ 
+        \end{tikzpicture}\linespread{1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Definitions, and theorem styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tcbset{textmarker/.style={%
+	skin=enhancedmiddle jigsaw,breakable,parbox=false, boxrule=0mm,leftrule=3mm,rightrule=3mm,boxsep=0mm,arc=0mm,outer arc=0mm, 	left=3mm,right=3mm,top=1mm,bottom=1mm,toptitle=1mm,bottomtitle=1mm,oversize}}
+\newtcolorbox{notebox}{textmarker,colback=black!10!white,colframe=MDXCorporateRed}
+\newtcolorbox{dfnbox}{textmarker,colback=black!10!white,colframe=MDXBrightsDarkBlue}
+
+\newenvironment{dfn}[1]{\begin{dfnbox}\@thmstylefont Definition: #1\tcblower}{\end{dfnbox}}
+
+\newtcbtheorem{thm}{Theorem}{
+	enhanced,
+  	colback=black!10!white,colframe=MDXCorporateRed,
+  	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
+ 	frame hidden,
+  	boxrule=0pt,titlerule=1mm,
+  	titlerule style=MDXCorporateRed
+}{}{}
+
+\newtcbtheorem{lem}{Lemma}{
+	enhanced,
+  	colback=black!10!white,colframe=MDXBrightsDarkBlue,
+  	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
+ 	frame hidden,
+  	boxrule=0pt,titlerule=1mm,
+  	titlerule style=MDXBrightsDarkBlue
+}{}{}
+
+\newtcbtheorem{cor}{Corollary}{
+	enhanced,
+  	colback=black!10!white,colframe=MDXBrightsDarkGreen,
+  	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
+ 	frame hidden,
+  	boxrule=0pt,titlerule=1mm,
+  	titlerule style=MDXBrightsDarkGreen
+}{}{}
+
+\newtcolorbox{quotebox}{textmarker,colback=black!10!white,colframe=MDXBrightsPurple}
+\renewenvironment{quote}[1]{\begin{quotebox}\quotefont}{\end{quotebox}}
