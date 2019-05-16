@@ -6,11 +6,13 @@
 %
 
 \ProvidesPackage{beamerthemeMiddlesex}[2017/22/08]
+
 \RequirePackage{fontspec}
 
 \RequirePackage{MDXColors}
 \RequirePackage{pgf}
 \RequirePackage{tikz}
+\RequirePackage{ifthen}
 
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins,breakable}
@@ -31,20 +33,27 @@
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{footline}[frame number]
 
+
+%%% Patching \pagestyle to record the page style
+%%% See: https://tex.stackexchange.com/questions/17787/if-pagestyle-equal-to-how-should-i-ask-it
+%%% 
+\pretocmd{\pagestyle}{%
+  \gdef\@regularpagestyle{#1}%
+  \gdef\thepagestyle{\if@specialpage\@specialstyle\else\@regularpagestyle\fi}
+  }
+{\message{(patching of \string\pagestyle\ succeeded)}}
+{\message{(patching of \string\pagestyle\ failed)}}
+
+
+%%% Draws the MDX logo on the frame
 \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
-\put(\LenToUnit{0.87\paperwidth},\LenToUnit{0.92\paperheight}){#1}}}
+\ifthenelse{\equal{\thepagestyle}{empty}}{}{
+\put(\LenToUnit{0.87\paperwidth},\LenToUnit{0.92\paperheight}){#1}}}}
 \AddToShipoutPictureFG{
   \AtPagemyUpperLeft{{\includegraphics[height=.5cm,keepaspectratio]{MU_LDN_Logo.pdf}}}
 }%
 
 \mode<presentation>
-
-\addtobeamertemplate{navigation symbols}{}{%
-    \usebeamerfont{footline}%
-    \usebeamercolor[fg]{footline}%
-    \hspace{1em}%
-    \insertframenumber/\inserttotalframenumber
-}
 
 \useoutertheme{tree}
 \setbeamercolor{separation line}{use=structure,bg=structure.fg!50!bg}
@@ -63,6 +72,8 @@
 \setbeamercolor{block title}{fg=MDXBrightsDarkBlue, bg=MDXNeutralsGrey}
 \setbeamercolor{block body}{bg=MDXNeutralsLightGrey}
 \setbeamercolor{background canvas}{bg=black!5!white}
+
+\setbeamertemplate{footline}{}
 
 \def\@boxheight{32pt}
 \newcommand{\setboxheight}[1]{\def\@boxheight{#1}}
@@ -85,14 +96,28 @@
 \pagestyle{empty}\linespread{1.6} % Fixes a problem with large ascenders/descenders in the fonts.
         \begin{tikzpicture}[remember picture,overlay]
 		\node at (current page.center) { \includegraphics[height=\paperheight]{\@backgroundimage} };
-		\fill [opacity = .7] (current page.south west) rectangle (current page.north east);		
+		\fill [opacity = .8] (current page.south west) rectangle (current page.north east);		
 		
 		\draw (current page.center) node [above, text width = \textwidth, align = center] {\maintitlefont \textcolor{white}{\thetitle}};
  		\draw (current page.center) node [below] {\modulefont \textcolor{white}{\themodule}};
  		
  		\draw (current page.south) node [above] {\authorfont \textcolor{white}{\theauthor}};
  
-        \end{tikzpicture}\linespread{1}}
+        \end{tikzpicture}\linespread{1}
+\pagestyle{plain}
+}
+
+\newcommand{\dividerframe}[1]{
+\begin{frame}
+\pagestyle{empty}\linespread{1.6} % Fixes a problem with large ascenders/descenders in the fonts.
+        \begin{tikzpicture}[remember picture,overlay]
+			\node at (current page.center) { \includegraphics[height=\paperheight]{mobiusbackground.png}};
+			
+			\node [left, text width = .6\textwidth] at (current page.east) {\maintitlefont \textcolor{white}{#1}};
+		\end{tikzpicture}			
+\end{frame}
+\pagestyle{plain}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Definitions, and theorem styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
