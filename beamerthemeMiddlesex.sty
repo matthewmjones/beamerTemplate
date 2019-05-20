@@ -21,9 +21,9 @@
 
 \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
 
-\newfontfamily\maintitlefont[SizeFeatures = {Size = 60}]{Open Sans Condensed Light}
-\newfontfamily\modulefont[SizeFeatures = {Size = 26}]{Open Sans Condensed Bold}
-\newfontfamily\authorfont[SizeFeatures = {Size = 16}]{Open Sans}
+\newfontfamily\maintitlefont[SizeFeatures = {Size = 60}]{Montserrat Light}
+\newfontfamily\modulefont[SizeFeatures = {Size = 16}]{Montserrat Light}
+\newfontfamily\authorfont[SizeFeatures = {Size = 16}]{Montserrat Light}
 \newfontfamily\titlefont{Montserrat Regular}
 \newfontfamily\quotefont[SizeFeatures = {Size = 14}]{Bad Script}
 
@@ -98,10 +98,10 @@
 		\node at (current page.center) { \includegraphics[height=\paperheight]{\@backgroundimage} };
 		\fill [opacity = .8] (current page.south west) rectangle (current page.north east);		
 		
-		\draw (current page.center) node [above, text width = \textwidth, align = center] {\maintitlefont \textcolor{white}{\thetitle}};
- 		\draw (current page.center) node [below] {\modulefont \textcolor{white}{\themodule}};
+		\draw (current page.center) node [text width = \textwidth, align = center] {\maintitlefont \textcolor{white}{\thetitle}};
+ 		\draw (current page.south east) node [above left] {\modulefont \textcolor{white}{\themodule}};
  		
- 		\draw (current page.south) node [above] {\authorfont \textcolor{white}{\theauthor}};
+ 		\draw (current page.south west) node [above right] {\authorfont \textcolor{white}{\theauthor}};
  
         \end{tikzpicture}\linespread{1}
 \pagestyle{plain}
@@ -111,7 +111,7 @@
 \begin{frame}
 \pagestyle{empty}\linespread{1.6} % Fixes a problem with large ascenders/descenders in the fonts.
         \begin{tikzpicture}[remember picture,overlay]
-			\node at (current page.center) { \includegraphics[height=\paperheight]{mobiusbackground4.png}};
+			\node at (current page.center) { \includegraphics[height=\paperheight]{mobiusbackground3.png}};
 			
 			\node [left, text width = .6\textwidth] at (current page.east) {\maintitlefont \textcolor{white}{#1}};
 		\end{tikzpicture}			
