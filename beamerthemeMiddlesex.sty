@@ -68,14 +68,15 @@
 \setbeamerfont{frametitle}{size*={20}{24}, family=\titlefont\selectfont}
 
 \setbeamercolor{alerted text}{fg=MDXCorporateRed}
-\setbeamercolor{frametitle}{fg=MDXBrightsDarkBlue,bg=MDXCorporateLightGrey}
+\setbeamercolor{normal text}{fg = MDXCorporateLightGrey}
+\setbeamercolor{frametitle}{fg=MDXBrightsDarkBlue,bg=MDXCorporateDarkGrey}
 \setbeamercolor{title}{fg=MDXBrightsDarkBlue, bg=MDXNeutralsLightGrey}
 \setbeamercolor{subtitle}{fg=MDXBrightsDarkBlue, bg=MDXNeutralsLightGrey}
-\setbeamercolor{author}{fg=MDXBrightsDarkBlue, bg=white}
-\setbeamercolor{date}{fg=MDXBrightsDarkBlue, bg=white}
-\setbeamercolor{block title}{fg=MDXBrightsDarkBlue, bg=MDXNeutralsGrey}
-\setbeamercolor{block body}{bg=MDXNeutralsLightGrey}
-\setbeamercolor{background canvas}{bg=black!10!white}
+\setbeamercolor{author}{fg=MDXBrightsLightBlueA, bg=white}
+\setbeamercolor{date}{fg=MDXBrightsLightBlueA, bg=white}
+\setbeamercolor{block title}{fg=MDXNeutralsGrey, bg=MDXBrightsDarkBlue}
+\setbeamercolor{block body}{bg=black}
+\setbeamercolor{background canvas}{bg=black}
 
 \setbeamertemplate{footline}{}
 
@@ -100,7 +101,7 @@
 \pagestyle{empty}\linespread{1.6} % Fixes a problem with large ascenders/descenders in the fonts.
         \begin{tikzpicture}[remember picture,overlay]
 		\node at (current page.center) { \includegraphics[max width = \paperwidth, min totalheight=\paperheight]{\@backgroundimage} };
-		\fill [opacity = .8] (current page.south west) rectangle (current page.north east);		
+		\fill [opacity = .8, bottom color = black, top color = black!90!white] (current page.south west) rectangle (current page.north east);		
 		
 		\draw (current page.center) node [inner sep = 0pt, text width = 1.3\paperwidth, above,  align = center, yshift = .05\paperheight] {\maintitlefont \textcolor{white}{\thetitle}};
  		\draw (current page.center) node [below] (module) {\modulefont \textcolor{white}{\themodule}};
@@ -163,3 +164,4 @@
 
 \newtcolorbox{quotebox}{textmarker,colback=black!10!white,colframe=MDXBrightsPurple}
 \renewenvironment{quote}[1]{\begin{quotebox}\quotefont}{\end{quotebox}}
+
