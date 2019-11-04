@@ -132,32 +132,35 @@
 \newtcolorbox{notebox}{textmarker,colback=black!10!white,colframe=MDXCorporateRed}
 \newtcolorbox{dfnbox}{textmarker,colback=black!10!white,colframe=MDXBrightsDarkBlue}
 
-\newenvironment{dfn}[1]{\begin{dfnbox}\@thmstylefont Definition: #1\tcblower}{\end{dfnbox}}
+\newenvironment{dfn}[1]{\begin{dfnbox}\@thmstylefont Definition: #1\tcblower}{\end{dfnbox}}	
 
 \newtcbtheorem{thm}{Theorem}{
 	enhanced,
-  	colback=black!10!white,colframe=MDXCorporateRed,
+	sharp corners, 
+  	colback=white,colframe=MDXCorporateRed,
   	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
  	frame hidden,
-  	boxrule=0pt,titlerule=1mm,
+  	boxrule=0pt,titlerule=2mm,
   	titlerule style=MDXCorporateRed
 }{}{}
 
 \newtcbtheorem{lem}{Lemma}{
 	enhanced,
-  	colback=black!10!white,colframe=MDXBrightsDarkBlue,
+	sharp corners,
+  	colback=white,colframe=MDXBrightsDarkBlue,
   	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
  	frame hidden,
-  	boxrule=0pt,titlerule=1mm,
+  	boxrule=0pt,titlerule=2mm,
   	titlerule style=MDXBrightsDarkBlue
 }{}{}
 
 \newtcbtheorem{cor}{Corollary}{
 	enhanced,
-  	colback=black!10!white,colframe=MDXBrightsDarkGreen,
+	sharp corners,
+  	colback=white,colframe=MDXBrightsDarkGreen,
   	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
  	frame hidden,
-  	boxrule=0pt,titlerule=1mm,
+  	boxrule=0pt,titlerule=2mm,
   	titlerule style=MDXBrightsDarkGreen
 }{}{}
 
