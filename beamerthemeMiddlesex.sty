@@ -12,6 +12,8 @@
 \RequirePackage{MDXColors}
 \RequirePackage{pgf}
 \RequirePackage{tikz}
+\usetikzlibrary{positioning}
+
 \RequirePackage{ifthen}
 
 \RequirePackage[export]{adjustbox}
@@ -27,7 +29,7 @@
 \newfontfamily\modulefont[SizeFeatures = {Size = 18}]{Montserrat Light}
 \newfontfamily\authorfont[SizeFeatures = {Size = 16}]{Montserrat Light Italic}
 \newfontfamily\titlefont{Montserrat Regular}
-\newfontfamily\quotefont[SizeFeatures = {Size = 14}]{Bad Script}
+\newfontfamily\quotefont[SizeFeatures = {Size = 14}]{Courgette}
 
 \newfontfamily\@thmstylefont[SizeFeatures = {Size = 12}]{Montserrat Italic}                %% For all the theorem titles
 
@@ -142,6 +144,16 @@
  	frame hidden,
   	boxrule=0pt,titlerule=2mm,
   	titlerule style=MDXCorporateRed
+}{}{}
+
+\newtcbtheorem{prop}{Proposition}{
+	enhanced,
+	sharp corners, 
+  	colback=white,colframe=MDXBrightsPurple,
+  	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
+ 	frame hidden,
+  	boxrule=0pt,titlerule=2mm,
+  	titlerule style=MDXBrightsPurple
 }{}{}
 
 \newtcbtheorem{lem}{Lemma}{
