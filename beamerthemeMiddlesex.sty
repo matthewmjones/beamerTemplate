@@ -29,7 +29,7 @@
 \newfontfamily\modulefont[SizeFeatures = {Size = 18}]{Montserrat Light}
 \newfontfamily\authorfont[SizeFeatures = {Size = 16}]{Montserrat Light Italic}
 \newfontfamily\titlefont{Montserrat Regular}
-\newfontfamily\quotefont[SizeFeatures = {Size = 14}]{Courgette}
+\newfontfamily\quotefont[SizeFeatures = {Size = 1.4}]{Courgette}
 
 \newfontfamily\@thmstylefont[SizeFeatures = {Size = 12}]{Montserrat Italic}                %% For all the theorem titles
 
@@ -40,7 +40,7 @@
 
 %%% Patching \pagestyle to record the page style
 %%% See: https://tex.stackexchange.com/questions/17787/if-pagestyle-equal-to-how-should-i-ask-it
-%%% 
+%%%
 \pretocmd{\pagestyle}{%
   \gdef\@regularpagestyle{#1}%
   \gdef\thepagestyle{\if@specialpage\@specialstyle\else\@regularpagestyle\fi}
@@ -81,6 +81,9 @@
 
 \setbeamertemplate{footline}{}
 
+%% Setting size so that it is correct for Vittle Pro
+\geometry{paperwidth = 148.5mm, paperheight = 104.25mm}
+
 \def\@boxheight{32pt}
 \newcommand{\setboxheight}[1]{\def\@boxheight{#1}}
 \newcommand{\boxedformula}[1]{\tikz[baseline=-2pt] \node [rectangle, rounded corners=2pt, right,  fill=MDXBrightsLightBlueA, draw=MDXBrightsDarkBlue, minimum size = \@boxheight] {$#1$};}
@@ -108,7 +111,7 @@
  		\draw (current page.center) node [below] (module) {\modulefont \textcolor{white}{\themodule}};
  		
  		\node [below = of module] {\authorfont \textcolor{white}{\theauthor}};
- 
+
         \end{tikzpicture}\linespread{1}
 \pagestyle{plain}
 }
@@ -138,7 +141,7 @@
 
 \newtcbtheorem{thm}{Theorem}{
 	enhanced,
-	sharp corners, 
+	sharp corners,
   	colback=white,colframe=MDXCorporateRed,
   	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
  	frame hidden,
@@ -148,7 +151,7 @@
 
 \newtcbtheorem{prop}{Proposition}{
 	enhanced,
-	sharp corners, 
+	sharp corners,
   	colback=white,colframe=MDXBrightsPurple,
   	colbacktitle=MDXCorporateLightGrey,fonttitle=\@thmstylefont,
  	frame hidden,
