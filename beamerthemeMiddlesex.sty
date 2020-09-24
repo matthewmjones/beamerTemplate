@@ -181,3 +181,20 @@
 
 \newtcolorbox{quotebox}{textmarker,colback=black!10!white,colframe=MDXBrightsPurple}
 \renewenvironment{quote}[1]{\begin{quotebox}\quotefont}{\end{quotebox}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Activity Environemnt %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{activity}{
+	\begin{center}
+	\begin{tcolorbox}[
+		width = .6\textwidth,
+		arc = 1pt,
+		colback = MDXCorporateLightGrey,
+		colframe = MDXBrightsDarkGreen,
+		title = Activity
+	]
+}{
+	\end{tcolorbox}
+	\end{center}
+}
